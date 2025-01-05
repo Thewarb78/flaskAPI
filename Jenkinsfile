@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'http://172.25.96.1:7990/scm/fa/flaskapi.git', credentialsId: '169c2db7-e22d-482a-97d7-a273981b76a6'
+                git branch: 'master', url: 'http://172.25.96.1:7990/scm/fa/flaskapi.git', credentialsId: '169c2db7-e22d-482a-97d7-a273981b76a6'
             }
         }
         stage('Install Dependencies') {
