@@ -16,7 +16,7 @@ pipeline {
                 sh 'docker build -t flaskapi .'
             }
         }
-        stage('Run Tests') {
+        stage('Run Tests - change') {
             steps {
                 sh 'pytest tests'
             }
