@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'ssh://git@localhost:7999/fa/flaskapi.git', credentialsId: 'bitbucket-credentials'
+                git branch: 'main', url: 'ssh://git@localhost:7999/fa/flaskapi.git', credentialsId: 'bitbucket-ssh'
             }
         }
         stage('Install Dependencies') {
