@@ -6,7 +6,7 @@ pipeline {
                 git branch: 'master', url: 'http://172.25.96.1:7990/scm/fa/flaskapi.git', credentialsId: '169c2db7-e22d-482a-97d7-a273981b76a6'
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Docker Image - test1') {
             steps {
                 sh 'docker build -t flaskapi .'
             }
