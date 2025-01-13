@@ -5,11 +5,34 @@ from datetime import datetime
 import os
 import pandas as pd
 from io import BytesIO
+import requests
+
+"""
+Cyberak example stuff
+
+def fetch_secret(secret_name):
+    url = f"https://<cyberark-container-host>/secrets/demo/variable/{secret_name}"
+    cert = ('/path/to/client.crt', '/path/to/client.key')  # Update with actual paths
+    response = requests.get(url, cert=cert, verify=False)  # Use `verify=False` for testing; secure in production
+    if response.status_code == 200:
+        return response.text.strip()
+    raise Exception(f"Failed to fetch secret: {response.status_code}, {response.text}")
+
+# Use the fetched secrets
+app.config["MONGO_URI"] = f"mongodb://{fetch_secret('mongodb/mongodb-username')}:{fetch_secret('mongodb/mongodb-password')}@mongodb:27017/reportsdb?authSource=admin"
+
+"""
 
 app = Flask(__name__)
 
-# MongoDB Configuration
-app.config["MONGO_URI"] = "mongodb://admin:secretpassword@29471c688f24:27017/reportsdb?authSource=admin"
+# Use environment variables for MongoDB configuration
+mongo_username = os.getenv("MONGO_USERNAME", "default_user")
+mongo_password = os.getenv("MONGO_PASSWORD", "default_password")
+mongo_host = os.getenv("MONGO_HOST", "localhost")
+mongo_db = os.getenv("MONGO_DB", "reportsdb")
+
+# Configure the MONGO_URI
+app.config["MONGO_URI"] = f"mongodb://{mongo_username}:{mongo_password}@{mongo_host}:27017/{mongo_db}?authSource=admin"
 mongo = PyMongo(app)
 
 # Define the collection
